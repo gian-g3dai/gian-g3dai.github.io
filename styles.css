@@ -19,21 +19,21 @@ body {
 h1 {
     font-size: 4em;
     letter-spacing: 0.1em;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
 }
 
 .coming-soon {
     font-size: 1em;
     margin-top: 20px;
-    color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00;
 }
 
 .cursor {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Make sure it's white */
+    background-color: rgba(0, 255, 0, 0.8); /* Cyberpunk Green */
     border-radius: 50%;
     pointer-events: none;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
