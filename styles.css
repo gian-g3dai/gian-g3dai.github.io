@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Black background */
+    overflow: hidden;
+    cursor: none; /* Hide the default cursor */
+}
+
+.content {
+    text-align: center;
+    color: #fff; /* White text */
+    font-family: 'Courier New', Courier, monospace; /* Cyberpunky font style */
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 4em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+}
+
+.coming-soon {
+    font-size: 1em;
+    margin-top: 20px;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+}
+
+.cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease-out, opacity 0.4s ease-out;
+    will-change: transform, opacity;
+}
