@@ -33,11 +33,13 @@ h1 {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Make sure it's white */
     border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
     pointer-events: none;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    mix-blend-mode: difference;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out; /* Slower transition */
     will-change: transform, opacity;
-    z-index: 9999; /* Ensure it's on top */
-    mix-blend-mode: normal; /* Make sure it doesn't blend with the background */
 }
+
+
+
