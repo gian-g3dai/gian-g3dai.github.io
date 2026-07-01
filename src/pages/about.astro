@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Gian Luigi D'Alessandro"
+  description="Research engineer working on distributed training, GPU kernels, and ML infrastructure. Physics PhD, Oxford / CERN."
+>
+  <article class="prose page">
+    <h1>About</h1>
+
+    <p>
+      I'm Gian — a research engineer working on high-performance AI systems, with
+      about seven years spent taking machine learning from prototype to production.
+      I'm currently co-founder and CTO at <strong>Unakin</strong>, where I've led
+      LLM fine-tuning, shipped semantic search and inference into production for
+      enterprise partners, and built the evaluation and training infrastructure
+      underneath it — mostly distributed across A100 clusters in PyTorch.
+    </p>
+
+    <p>
+      Most of my work lives at the boundary between models and the hardware they
+      run on: FSDP, DDP and tensor parallelism for training at scale; custom
+      Triton kernels when the standard ops leave memory or throughput on the table;
+      and high-throughput serving on the inference side. One kernel I'm fond of cut
+      cross-entropy memory in half and let us double the batch size — the kind of
+      change that pays for itself every step of training.
+    </p>
+
+    <p>
+      Before all this I was a physicist. I did my PhD in particle physics at Oxford
+      and Royal Holloway, based largely at CERN, building distributed Monte Carlo
+      simulations of particle interactions and detector response across compute
+      clusters and validating them against experimental data. I was a core
+      contributor to
+      <a href="https://github.com/jairhul/pyg4ometry">pyg4ometry</a>, an
+      open-source geometry library still used across high-energy physics, and I
+      published a fair number of papers along the way. That background is where my
+      instinct for numerical rigor and large-scale systems comes from.
+    </p>
+
+    <p>
+      This site is my notebook for the systems side of ML — the parts that are hard
+      to find written down clearly. Expect posts on distributed training internals,
+      GPU kernels, and the unglamorous engineering that makes models fast and
+      reliable in production.
+    </p>
+
+    <p>
+      You can find me on
+      <a href="https://github.com/gian-g3dai">GitHub</a> and
+      <a href="https://linkedin.com/in/giandalessandro">LinkedIn</a>, or reach me at
+      <a href="mailto:gianluigidalessandro23@gmail.com">gianluigidalessandro23@gmail.com</a>.
+    </p>
+  </article>
+</Base>

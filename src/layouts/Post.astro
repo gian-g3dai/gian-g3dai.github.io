@@ -1,0 +1,26 @@
+---
+import Base from './Base.astro';
+import PostMeta from '../components/PostMeta.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  minutes?: number;
+}
+const { title, description, pubDate, tags, minutes } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <article class="post">
+    <header class="post-header">
+      <h1>{title}</h1>
+      <PostMeta pubDate={pubDate} tags={tags} minutes={minutes} />
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>

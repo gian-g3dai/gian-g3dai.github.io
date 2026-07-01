@@ -1,0 +1,25 @@
+---
+interface Props {
+  pubDate: Date;
+  tags?: string[];
+  minutes?: number;
+}
+const { pubDate, tags = [], minutes } = Astro.props;
+const stamp = pubDate.toISOString().slice(0, 10).replace(/-/g, '·');
+---
+
+<div class="post-meta">
+  <time datetime={pubDate.toISOString()}>{stamp}</time>
+  {tags.length > 0 && (
+    <>
+      <span class="sep">/</span>
+      <span class="tags">{tags.join(' · ')}</span>
+    </>
+  )}
+  {minutes && (
+    <>
+      <span class="sep">/</span>
+      <span>{minutes} min</span>
+    </>
+  )}
+</div>
