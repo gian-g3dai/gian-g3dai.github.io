@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PostMeta from '../components/PostMeta.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="hero">
+    <p class="eyebrow">Research Engineer / AI·ML Systems</p>
+    <h1>Distributed training, GPU kernels,<br />and the systems that serve them.</h1>
+    <p class="lede">
+      I build high-performance AI systems end to end — FSDP and tensor parallelism,
+      custom Triton kernels, and production inference. Physicist by training
+      (Oxford / CERN), currently co-founder & CTO at Unakin. This is where I write
+      down what I learn along the way.
+    </p>
+    <div class="hero-track" aria-hidden="true"></div>
+  </section>
+
+  <section class="recent">
+    <p class="section-label">Recent writing</p>
+    {posts.length === 0 ? (
+      <p class="lede">First post landing soon.</p>
+    ) : (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li class="post-item">
+            <a href={`/blog/${post.id}/`}>
+              <h3>{post.data.title}</h3>
+              <PostMeta pubDate={post.data.pubDate} tags={post.data.tags} />
+              <p>{post.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</Base>

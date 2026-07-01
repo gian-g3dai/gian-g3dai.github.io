@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostMeta from '../../components/PostMeta.astro';
+import { getCollection } from 'astro:content';
+import { SITE_DESCRIPTION } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Base title="Writing — Gian Luigi D'Alessandro" description={SITE_DESCRIPTION}>
+  <h1 class="page-title">Writing</h1>
+  {posts.length === 0 ? (
+    <p class="lede">First post landing soon.</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-item">
+          <a href={`/blog/${post.id}/`}>
+            <h2>{post.data.title}</h2>
+            <PostMeta pubDate={post.data.pubDate} tags={post.data.tags} />
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
