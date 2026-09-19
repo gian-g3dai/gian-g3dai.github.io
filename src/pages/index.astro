@@ -11,14 +11,15 @@ const posts = (await getCollection('blog'))
 
 <Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section class="hero">
-    <p class="eyebrow">Founding AI Research Engineer / RL for LLM agents</p>
-    <h1>RL for LLM agents, and the<br />infrastructure that trains them.</h1>
+    <p class="eyebrow">Technical &amp; personal blog</p>
+    <h1>Things I've built, and how<br />they actually worked.</h1>
     <p class="lede">
-      I build the tooling that lets LLM agents improve from their own experience —
-      composable primitives for rewards, rollouts and evals, on top of distributed
-      training, custom Triton kernels and production inference. Previously
-      co-founder & CTO at Unakin; physicist by training (Oxford / CERN). This is
-      where I write down what I learn along the way.
+      I'm Gian — a research engineer. This is where I write up the systems I've
+      worked on and the implementation details behind them: fine-tuning and
+      extended pre-training of LLMs, distributed training, custom GPU kernels,
+      inference in production, and lately RL for LLM agents. Mostly the parts
+      that are hard to find written down clearly — what the code looked like,
+      what it cost, and what I'd do differently.
     </p>
     <div class="hero-track" aria-hidden="true"></div>
   </section>
