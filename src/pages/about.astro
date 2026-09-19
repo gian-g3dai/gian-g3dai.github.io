@@ -4,50 +4,93 @@ import Base from '../layouts/Base.astro';
 
 <Base
   title="About — Gian Luigi D'Alessandro"
-  description="Research engineer working on distributed training, GPU kernels, and ML infrastructure. Physics PhD, Oxford / CERN."
+  description="Founding AI research engineer working on RL for LLM agents, training infrastructure, and GPU kernels. Physics PhD, Oxford / CERN."
 >
   <article class="prose page">
     <h1>About</h1>
 
     <p>
-      I'm Gian — a research engineer working on high-performance AI systems, with
-      about seven years spent taking machine learning from prototype to production.
-      I'm currently co-founder and CTO at <strong>Unakin</strong>, where I've led
-      LLM fine-tuning, shipped semantic search and inference into production for
-      enterprise partners, and built the evaluation and training infrastructure
-      underneath it — mostly distributed across A100 clusters in PyTorch.
+      I'm Gian — a research engineer working on <strong>reinforcement learning for
+      LLM agents</strong>. I research the methods, then ship the ones that survive
+      contact with reality as a Python SDK: composable primitives for rewards,
+      rollouts and evals, PyTorch-style, so training an agent feels like writing
+      code rather than tuning prompts.
     </p>
 
     <p>
-      Most of my work lives at the boundary between models and the hardware they
-      run on: FSDP, DDP and tensor parallelism for training at scale; custom
-      Triton kernels when the standard ops leave memory or throughput on the table;
-      and high-throughput serving on the inference side. One kernel I'm fond of cut
-      cross-entropy memory in half and let us double the batch size — the kind of
+      Right now that means one training loop that any agent can plug into, GRPO-style
+      policy optimisation for agents that learn from their own execution traces
+      (benchmarked against prompt-optimisation approaches like GEPA's Pareto search),
+      and an eval harness strict enough to decide what ships — improvement on
+      held-out tasks, not on training reward.
+    </p>
+
+    <h2>Before this</h2>
+
+    <p>
+      I co-founded <strong>Unakin</strong> and was CTO there from 2023 to 2026. We
+      built <strong>Sawyer</strong>, an autonomous coding agent that plans, writes
+      and iterates on game code inside Unity with full project context — code,
+      scenes and assets. I trained our custom Llama 2/3 models in PyTorch (full
+      fine-tuning, extended pre-training, LoRA) on multi-stage pipelines across our
+      own 8× A100 cluster, with FSDP, DDP and custom LoRA-aware sharding, and shipped
+      multi-agent orchestration and real-time inference to enterprise customers.
+      Along the way I fine-tuned text-conditioned diffusion models for 3D generation
+      and made inference ~10× faster by swapping out the NeRF backbone at inference
+      time. I built and led a 6-person engineering team, and raised a $1.5M pre-seed
+      (Betaworks, Greycroft, Entrepreneur First, Mercuri).
+    </p>
+
+    <p>
+      Much of my work lives at the boundary between models and the hardware they run
+      on. One kernel I'm fond of — a custom Triton cross-entropy — cut memory roughly
+      in half versus stock PyTorch and let us double the batch size, the kind of
       change that pays for itself every step of training.
     </p>
 
     <p>
-      Before all this I was a physicist. I did my PhD in particle physics at Oxford
-      and Royal Holloway, based largely at CERN, building distributed Monte Carlo
-      simulations of particle interactions and detector response across compute
-      clusters and validating them against experimental data. I was a core
+      Before all this I was a physicist. I did my PhD in particle physics with the
+      John Adams Institute (Oxford and Royal Holloway), based largely at CERN,
+      leading development of Monte Carlo simulation software and distributed
+      data-processing pipelines for high-energy physics experiments. I was a core
       contributor to
-      <a href="https://github.com/jairhul/pyg4ometry">pyg4ometry</a>, an
-      open-source geometry library still used across high-energy physics, and I
-      published a fair number of papers along the way. That background is where my
-      instinct for numerical rigor and large-scale systems comes from.
+      <a href="https://github.com/jairhul/pyg4ometry">pyg4ometry</a>, an open-source
+      geometry library still used across HEP. That background is where my instinct
+      for numerical rigor and large-scale systems comes from.
     </p>
+
+    <h2>Focus areas</h2>
+
+    <ul>
+      <li>RL for LLM agents — GRPO and policy optimisation</li>
+      <li>Agent evals and reward design</li>
+      <li>Post-training: SFT, LoRA, RLHF</li>
+      <li>Distributed training: FSDP, DDP, tensor parallelism</li>
+      <li>GPU kernels: Triton, CUDA</li>
+      <li>Multi-agent orchestration and inference serving</li>
+    </ul>
+
+    <h2>Selected work</h2>
+
+    <ul>
+      <li>
+        <a href="https://github.com/gian-g3dai/LLM-Research">LLM-Research</a> — Code
+        Llama fine-tuning with PyTorch FSDP, CUDA-graph optimisation, and
+        memory-efficient split cross-entropy
+      </li>
+      <li>
+        <a href="https://github.com/gian-g3dai/Poseidon-Triton">Poseidon-Triton</a> —
+        end-to-end LLM inference serving with NVIDIA Triton and TensorRT-LLM
+      </li>
+      <li>
+        <a href="https://github.com/jairhul/pyg4ometry">pyg4ometry</a> — open-source
+        geometry library for HEP simulation (contributor)
+      </li>
+    </ul>
 
     <p>
       This site is my notebook for the systems side of ML — the parts that are hard
-      to find written down clearly. Expect posts on distributed training internals,
-      GPU kernels, and the unglamorous engineering that makes models fast and
-      reliable in production.
-    </p>
-
-    <p>
-      You can find me on
+      to find written down clearly. You can find me on
       <a href="https://github.com/gian-g3dai">GitHub</a> and
       <a href="https://linkedin.com/in/giandalessandro">LinkedIn</a>, or reach me at
       <a href="mailto:gianluigidalessandro23@gmail.com">gianluigidalessandro23@gmail.com</a>.
