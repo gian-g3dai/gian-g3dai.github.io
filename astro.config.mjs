@@ -8,4 +8,9 @@ export default defineConfig({
   // gian-g3dai.github.io, no `base` is needed.
   site: 'https://gian-g3dai.github.io',
   integrations: [mdx(), sitemap()],
+  // The cross-entropy post was folded into the broader end-to-end write-up.
+  // Keep the old URL alive so existing links don't 404.
+  redirects: {
+    '/blog/memory-efficient-cross-entropy': '/blog/training-a-code-model-end-to-end',
+  },
 });
