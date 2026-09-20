@@ -87,7 +87,7 @@ The model is stock `qwen3:14b` with `num_ctx` raised to 24576 — the default 4k
 
 ## Where it ended up
 
-The laptop no longer runs only the agent. The same Ollama service now also backs a private chat app for the family — a ChatGPT-style web UI on the same 16 GB card, reachable from their phones, with nothing leaving the machine except the chat traffic itself.
+The laptop no longer runs only the agent. The same Ollama service now also backs a private chat app — a ChatGPT-style web UI on the same 16 GB card, reachable from a phone, with nothing leaving the machine except the chat traffic itself.
 
 It is two user systemd services and no Docker. Ollama serves on `127.0.0.1:11434`, [Open WebUI](https://openwebui.com) sits in front of it on `127.0.0.1:8080` — started with `uvx`, which fetches its own Python 3.11 — and both are enabled with lingering on, so they come up when WSL does, without anyone logging in or running anything. Everything lives under `$HOME`; none of it needed admin rights.
 
@@ -101,10 +101,12 @@ No router ports are open and both services listen on loopback only, so the tailn
 
 The served model is `qwen3:14b` again, rebuilt with the thinking step disabled: in a chat UI the long silent pause before the first token reads as a hang. Sign-ups are closed, new accounts would land as *pending* for approval, only that one model is visible, and API keys and web search are off. But the login page is on the public internet with no rate limiting in front of it, which makes the admin password the actual security boundary. That is worth being clear-eyed about before sharing the link with anyone.
 
-And the budget from the top of this post is still the whole story. The chat model holds 13 GB of the 16 GB, so the agent and the family app cannot both be resident — start one while the other is loaded and Ollama swaps them in and out and everything crawls. One at a time. A cold start is 30–60 seconds while 13 GB moves onto the card and then under a second to first token, which is the one thing worth warning people about, or they assume it is broken.
+And the budget from the top of this post is still the whole story. The chat model holds 13 GB of the 16 GB, so the agent and the chat app cannot both be resident — start one while the other is loaded and Ollama swaps them in and out and everything crawls. One at a time. A cold start is 30–60 seconds while 13 GB moves onto the card and then under a second to first token, which is the one thing worth warning people about, or they assume it is broken.
 
 ## What I'd keep
 
 The honest summary is that this setup is good for boilerplate, single-file edits and scratch work, and it is not close to a frontier model on anything requiring a plan held across many turns. That's the trade for it running on a plane.
 
-What I'd keep is the measurement habit. Three things here were only visible because something checked: the context ceiling fell out of KV arithmetic before any model ran, the empty agent loop pointed at a template rather than at speed, and a two-line checksum caught a model deleting input data — which no pass/fail score would ever have shown, because a model that fabricates its input and sums it correctly *passes*. Benchmark the failure modes you'd actually care about, at a sample size that can survive being wrong once.
+The part I did not expect to keep is the chat UI. A 14B model is more than good enough for the questions people actually put to one, and once it is up there is a private, ad-free chat interface that the people I share it with can use for nothing — no subscription, no per-seat price, no account with anyone. That has turned out to be worth more to me than the agent is.
+
+What I'd keep from the agent side is the measurement habit. Three things here were only visible because something checked: the context ceiling fell out of KV arithmetic before any model ran, the empty agent loop pointed at a template rather than at speed, and a two-line checksum caught a model deleting input data — which no pass/fail score would ever have shown, because a model that fabricates its input and sums it correctly *passes*. Benchmark the failure modes you'd actually care about, at a sample size that can survive being wrong once.
