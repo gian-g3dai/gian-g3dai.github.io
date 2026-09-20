@@ -5,7 +5,9 @@ pubDate: 2026-09-20
 tags: ["llm", "inference", "coding agents", "ollama", "local models"]
 ---
 
-I wanted a terminal coding agent that runs entirely on my own machine — no API, no network, nothing leaving the laptop. The hardware is an RTX 3080 Laptop: 16 GB of VRAM, 15 GB of system RAM behind it, Ollama on WSL2. That budget turns out to be the whole story, and most of what I got wrong came from ignoring it.
+I found my old gaming laptop again, looked up the specs out of curiosity, and noticed the GPU had 16 GB of memory. When I bought that machine, 16 GB was a lot. It seemed like more than enough to run a coding agent locally, entirely on my own hardware: no API, no network, nothing leaving the laptop. So I gave it a try.
+
+The machine is an RTX 3080 Laptop: 16 GB of VRAM, 15 GB of system RAM behind it, Ollama on WSL2. The thing I actually came away with is that 16 GB doesn't buy what it used to. That budget turns out to be the whole story, and most of what I got wrong came from ignoring it.
 
 The harness was the easy part. [OpenCode](https://opencode.ai) installs as a single binary, which mattered because I had no Node.js on the machine, and it speaks to anything OpenAI-compatible — Ollama's `/v1` endpoint included. The models were where it got interesting.
 
