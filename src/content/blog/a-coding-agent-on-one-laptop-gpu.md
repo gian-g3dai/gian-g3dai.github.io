@@ -85,6 +85,24 @@ Two of my own bugs are in that table's history. My first verifier compared `"8.0
 
 The model is stock `qwen3:14b` with `num_ctx` raised to 24576 — the default 4k breaks tool calling outright, and anything under ~16k leaves no room to work. And `edit: ask`, which I would keep on even if I'd never seen a model type `rm`.
 
+## Where it ended up
+
+The laptop no longer runs only the agent. The same Ollama service now also backs a private chat app for the family — a ChatGPT-style web UI on the same 16 GB card, reachable from their phones, with nothing leaving the machine except the chat traffic itself.
+
+It is two user systemd services and no Docker. Ollama serves on `127.0.0.1:11434`, [Open WebUI](https://openwebui.com) sits in front of it on `127.0.0.1:8080` — started with `uvx`, which fetches its own Python 3.11 — and both are enabled with lingering on, so they come up when WSL does, without anyone logging in or running anything. Everything lives under `$HOME`; none of it needed admin rights.
+
+Getting it off the laptop is one command. Tailscale Funnel publishes port 8080 as HTTPS on a `*.ts.net` name:
+
+```powershell
+& 'C:\Program Files\Tailscale\tailscale.exe' funnel --bg 8080
+```
+
+No router ports are open and both services listen on loopback only, so the tailnet is the only way in — and `funnel --bg off` takes the site off the internet immediately without touching anything else. The `--bg` flag is supposed to make the funnel stick; I have watched it switch itself off without a reboot, so `funnel status` is part of the routine rather than something I check once the link is already dead.
+
+The served model is `qwen3:14b` again, rebuilt with the thinking step disabled: in a chat UI the long silent pause before the first token reads as a hang. Sign-ups are closed, new accounts would land as *pending* for approval, only that one model is visible, and API keys and web search are off. But the login page is on the public internet with no rate limiting in front of it, which makes the admin password the actual security boundary. That is worth being clear-eyed about before sharing the link with anyone.
+
+And the budget from the top of this post is still the whole story. The chat model holds 13 GB of the 16 GB, so the agent and the family app cannot both be resident — start one while the other is loaded and Ollama swaps them in and out and everything crawls. One at a time. A cold start is 30–60 seconds while 13 GB moves onto the card and then under a second to first token, which is the one thing worth warning people about, or they assume it is broken.
+
 ## What I'd keep
 
 The honest summary is that this setup is good for boilerplate, single-file edits and scratch work, and it is not close to a frontier model on anything requiring a plan held across many turns. That's the trade for it running on a plane.
